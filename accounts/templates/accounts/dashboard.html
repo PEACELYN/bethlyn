@@ -1,0 +1,54 @@
+{%extends 'base.html'%} {%block content%}
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y bg">
+  {%include 'snippets/alerts.html'%}
+
+  <div class="container-fluid">
+    <div class="row">
+      {% include 'accounts/dashboardsidebar.html' %}
+      <main class="col-md-9 mt-5">
+        <article class="card">
+          <header class="card-header">
+            {% comment %} <strong class="d-inline-block mr-3">Order ID: 6123456789</strong>
+            <span>Order Date: 16 December 2018</span> {% endcomment %}
+          </header>
+
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card text-center">
+                  <div class="card-body">
+                    <div class="card-title">Total Orders</div>
+                    <h3>{{orders_count}}</h3>
+                    <a href="{%url 'my_orders'%}">View Orders</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="card text-center">
+                  <div class="card-body">
+                    <img 
+                    style="vertical-align: middle; width: 50px;height: 50px; border-radius: 50%;"
+                    src="https://www.w3schools.com/howto/img_avatar.png" alt="" class="avatar img-fluid">
+                    <p class="mb-0">{{user.email}}</p>
+                    <p>{{user.phonenumber}}</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <!-- row.// -->
+          </div>
+          <!-- card-body .// -->
+        </article>
+        <!-- order-group.// -->
+      </main>
+    </div>
+    <!-- row.// -->
+  </div>
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+{%endblock%}

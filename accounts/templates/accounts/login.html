@@ -1,0 +1,63 @@
+{%extends 'base.html'%} 
+{% load crispy_forms_field %}
+
+{%block content%}
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y" style="min-height: 84vh">
+
+  {%if request.GET.command == 'verify'%}
+    <div class="container mx-auto alert alert-info text-center" role="alert" style="max-width: 600px; margin-top: 100px" >
+      <span>
+        Thank you for registering with us, We've sent a verification email to [{{request.GET.email}}], Check your email and click on the activation 
+        link.
+      </span> 
+      <hr>
+      <span class="text-center"> Already Verified? Please <a href="{%url 'login'%}">Login</a></span>
+    </div>
+  {%else%}
+
+    <!-- ============================ COMPONENT LOGIN   ================================= -->
+    <div class=" card mx-auto" style="max-width: 380px; margin-top: 100px">
+      <div class="card-body">
+        <h4 class="card-title mb-4">Sign in</h4>
+        {%include 'snippets/alerts.html'%}
+
+        <form method="POST" action="{%url 'login'%}">{%csrf_token%}
+          <div class="form-group my-3">
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Email Address"
+              name="email"
+            />
+          </div>
+          <!-- form-group// -->
+          <div class="form-group my-3">
+            <input type="password" class="form-control" name="password" placeholder="Password" />
+          </div>
+          <!-- form-group// -->
+
+          <div class="form-group">
+            <a href="{%url 'passwordreset'%}" class="float-right">Forgot password?</a>
+          </div>
+          <!-- form-group form-check .// -->
+          <div class="form-group my-3">
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+          </div>
+          <!-- form-group// -->
+        </form>
+      </div>
+      <!-- card-body.// -->
+    </div>
+    <!-- card .// -->
+
+    <p class="text-center mt-4">Don't have account? <a href="{%url 'register'%}">Sign up</a></p>
+    <br /><br />
+    <!-- ============================ COMPONENT LOGIN  END.// ================================= -->
+
+  {%endif%}
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+{%endblock%}
